@@ -1,6 +1,6 @@
-const User = require('../User_model')
+const User = require('../User_model');
 
-var fn_index = async (ctx, next) => {
+var fn_upload = async (ctx, next) => {
     var email = ctx.cookies.get('userEmail');
     if (email) {
         var user_one = await User.findOne({
@@ -8,13 +8,14 @@ var fn_index = async (ctx, next) => {
                 email:email
             }
         });
+
     } else {
         var user_one;
     }
     
-    ctx.render('index.html', {userInfo:user_one});
+    ctx.render('upload.html', {userInfo:user_one});
 }
 
 module.exports = {
-    'GET /': fn_index,
+    'GET /upload': fn_upload
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/md5.js"></script>
+        <script type="text/javascript">
+            function md5_encryption(){
+                document.getElementById("password").value = $.md5(
+                    document.getElementById("password").value
+                );
+                document.getElementById("password2").value = $.md5(
+                    document.getElementById("password2").value
+                );
+            }
+        </script>
+        <script type="text/javascript">
+            function get_token(){
+                var time=10;
+                var email=$("#email").val();
+
+                $.get('/signup/maketoken',{
+                    email:email
+                })
+                var stoptime=setInterval(sub,1000);
+                function sub(){
+                    time--;
+                    $("#get_token_button").attr("value","请"+time+"秒后再试");
+                    if(time===0){
+                        clearInterval(stoptime);
+                        $("#get_token_button").attr("value","获取验证码");
+                        $("#get_token_button").attr("disabled",false);
+                    }else{
+                        $("#get_token_button").attr("disabled",true);
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form action="/signup_next" method="post">
+            <p>Email:<input name="email" id="email"></p>
+            <p>Name:<input name="name" id="name"></p>
+            <p>Password:<input name="password" type="password" id="password"></p>
+            <p>Password Again:<input name="password_2" type="password" id="password2"></p>
+            <p>验证码:<input name="token" id="token" type="text"></p>
+            <p><input type="button" value="获取验证码" onclick="get_token()" id='get_token_button'></p>
+            <p><input type="submit" value="注册" onclick="md5_encryption()"></p>
+        </form>
+    </body>
+</html>
