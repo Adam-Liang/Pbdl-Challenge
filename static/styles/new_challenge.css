@@ -1,0 +1,38 @@
+#site_content{
+    width: 85%;
+    margin: 50px 7.5% 20px 7.5%;
+    padding: 0 0 10px 0;
+}
+
+ul.new_challenge{
+    margin-top: 20px;
+}
+ul.new_challenge li{
+    padding: 0 0 8px 0;
+}
+div.signin_button{
+    width: 100%;
+    height: 40px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    border-radius: 4px;
+}
+div.signin_button:hover{
+    background: #f7f7f7;
+}
+div.signin_button a{
+    width: 100%;
+    height: 100%;
+}
+div.signin_button a div{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+div.signin_button img{
+    height: 75%;
+    margin: 5px 6px 5px 0;
+}
+div.signin_button span{
+    color: #707070;
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Challenge</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Conference project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap4/bootstrap.min.css">
+<link href="../static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="../static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/speakers.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/speakers_responsive.css">
+<link rel="stylesheet" type="text/css" href="../static/styles/new_challenge.css">
+
+<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#user_name").mouseover(function(){
+			$("#user_name span").text("logout");
+		});
+		$("#user_name").mouseout(function(){
+			$("#user_name span").text("{{userInfo.name}}");
+		});
+	});
+</script>
+<script type="text/javascript">
+	function logout(){
+		$.get("/logout");
+		window.location.reload();
+	}
+</script>
+{% block head %}
+{% endblock %}
+
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Menu -->
+    
+	<div class="menu trans_500">
+		<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+			<div class="menu_close_container"><div class="menu_close"></div></div>
+			<div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+			<ul>
+				<li class="menu_item"><a href="index.html">Home</a></li>
+				<li class="menu_item"><a href="organizers">Organizers</a></li>
+				<li class="menu_item"><a href="speakers">Speakers</a></li>
+				<li class="menu_item"><a href="callforpapers">Call for papers</a></li>
+				<li class="menu_item"><a href="challenge.html">Challenge</a></li>
+				<li class="menu_item"><a href="program.html">Program</a></li>
+			</ul>
+		</div>
+	</div>
+    
+	<!-- Home -->
+
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="../static/images/background.jpg" data-speed="0.8"></div>
+
+		<!-- Header -->
+
+		<header class="header" id="header">
+				<div class="header_nav" id="header_nav_pin">
+					<div class="header_nav_inner">
+						<div class="header_nav_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="header_nav_content d-flex flex-row align-items-center justify-content-start">
+											<nav class="main_nav">
+												<ul>
+													<li><a href="https://pbdl2019.github.io/index.html">Home</a></li>
+													<li><a href="https://pbdl2019.github.io/organizers.html">Organizers</a></li>
+													<li><a href="https://pbdl2019.github.io/speakers.html">Speakers</a></li>
+													<li><a href="https://pbdl2019.github.io/callforpapers.html">Call for papers</a></li>
+													<li class="active"><a href="https://pbdl2019.github.io/challenge.html">Challenge</a></li>
+													<li><a href="https://pbdl2019.github.io/program.html">Program</a></li>
+													
+												</ul>
+											</nav>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>	
+			</div>
+		</header>
+
+		
+	</div>
+
+	<!-- Speakers -->
+
+	 <div id="site_content">
+      
+
+	  <div><!--new body-->
+        <div class="container">
+				<div class="row">
+					<div class="col-lg-2 col-md-4"><!--小导航部分-->
+						{% if userInfo.email%}
+						<div class="signin_button row" id="user_name">
+							<a href="#" onclick="logout()">
+								<div class="col-md-12">
+									<img class="img-responsive" src="/static/images/user.png"><span>{{userInfo.name}}</span>
+								</div>
+							</a>
+						</div>
+						{% else %}
+						<div class="signin_button row">
+							<a href="/signin">
+								<div class="col-md-12">
+									<img class="img-responsive" src="/static/images/signin.png"><span>Sign In</span>
+								</div>
+							</a>
+						</div>
+						{% endif %}
+						
+						{% block nav %}
+						<ul class="nav nav-pills flex-column new_challenge">
+							{% block nav_1 %}<li class="nav-item"><a class="nav-link" href="/">Message</a></li>{% endblock %}
+							{% block nav_2 %}<li class="nav-item"><a class="nav-link" href="/dataset">Dataset</a></li>{% endblock %}
+							{% block nav_3 %}<li class="nav-item"><a class="nav-link" href="/tasks">Tasks</a></li>{% endblock %}
+							{% block nav_4 %}<li class="nav-item"><a class="nav-link" href="/results">Results</a></li>{% endblock %}
+							{% block nav_5 %}<li class="nav-item"><a class="nav-link" href="/evaluation">Evaluation</a></li>{% endblock %}
+						</ul>
+						{% endblock %}
+					</div>
+					<div class="col-lg-10 col-md-8"><!--内容部分-->
+						{% block content %}
+						<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">Dataset will update.</b></p>
+						<p style="font-size:16px;">We propose a semantic segmentation challenge for urban autonomous driving scene which utilizes newly developed hyperspectral camera as well as solid laser camera. The motivation is to compensate the insufficient visual quality problem of existing dataset. Particularly, the CitiScape dataset provides only extremely washed out RGB images, and the multi-view stereo depth is inaccurate because of small baseline. To solve this, we endeavour to propose the new dataset which adopts multi-channel visual input.</p>
+						<p style="font-size:16px;">Our new dataset, can provide the following benefits: 1. properly balanced and colourful visual input. 2. We can analyse and see visual properties which cannot be seen from RGB channels. 3. We can robustly handle night scenes, thanks to the infrared band. 4. We can robustly handle water phenomenon including rain and fog, because of the absolution behaviour in the infrared band. 5. We provide much denser and reliable 3D points.</p>
+						<p style="font-size:16px;">For the initial release of the dataset, we decide to propose the task of semantic segmentation. We are planning to release 20000-50000 frames hyperspectral plus laser depth images. We are planning to manually label 2000-5000 frames.</p>
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+    </div><!--new body end-->
+    </div>
+</div>
+
+<!--<script src="../static/js/jquery-3.2.1.min.js"></script>-->
+<script src="../static/styles/bootstrap4/popper.js"></script>
+<script src="../static/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="../static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="../static/plugins/easing/easing.js"></script>
+<script src="../static/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="../static/js/speakers.js"></script>
+</body>
+</html>

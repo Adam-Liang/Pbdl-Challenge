@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">Email not found!</b></p>
+<a href="/signin"><button type="button" class="btn btn-link" style="padding-left: 0;">Back to signin.</button></a>
+{% endblock %}
+
+<!--<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -7,4 +14,4 @@
         <p>登录失败：未找到此用户</p>
         <a href="/">回到主页</a>
     </body>
-</html>
+</html>-->

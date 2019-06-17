@@ -12,7 +12,7 @@ var fn_upload_next = async (ctx, next) => {
             ctx.render('upload_login_invalid.html');
         }
     } else {
-        ctx.render('upload_login_invalid.html');
+        ctx.render('upload_login_erruser.html');
     }
     
     var fs = require("fs");
@@ -20,12 +20,12 @@ var fn_upload_next = async (ctx, next) => {
     const file = ctx.request.files.file;
     // 创建可读流
     const reader = fs.createReadStream(file.path);
-    let filePath = path.join(__dirname, '../files/upload/') + `/${user_one.id}.rar`;
+    let filePath = path.join(__dirname, '../files/upload/') + `/${user_one.id}.zip`;
     // 创建可写流
     const upStream = fs.createWriteStream(filePath);
     // 可读流通过管道写入可写流
     reader.pipe(upStream);
-    return ctx.body = "上传成功！";
+    ctx.render('upload_success.html',{userInfo:user_one});
 }
 module.exports = {
     'POST /upload_next': fn_upload_next

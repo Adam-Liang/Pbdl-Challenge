@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script type="text/javascript">
+    $().ready(function(){
+        $("#file").change(function(){
+            if($("#file").val()){
+                var file_name=$("#file").val();
+                var temp_num_1=file_name.lastIndexOf(".");
+                var temp_num_2=file_name.length;
+                var suffix=file_name.substring(temp_num_1+1,temp_num_2);
+                console.log(file_name);
+                console.log(suffix);
+                if(suffix==='zip'){
+                    $("#file_span").text($("#file").val());
+                    $("#file_span").attr("style","color:#a5a5a5");
+                    $("#file_submit").attr("disabled",false);
+                }else{
+                    $("#file_span").text("only zip is valid");
+                    $("#file_span").attr("style","color:red");
+                    $("#file_submit").attr("disabled",true);
+                }
+            }else{
+                $("#file_span").text("no file here");
+                $("#file_span").attr("style","color:#a5a5a5");
+                $("#file_submit").attr("disabled",true);
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% block nav_3 %}
+<li class="nav-item"><a class="nav-link active" href="/tasks">Tasks</a></li>
+{% endblock %}
+{% block content %}
+<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">Tasks will update.</b></p>
+<p style="font-size:16px;">Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   Here are some requires about tasks.   </p>
+<p style="font-size:16px;"></p>
+    {% if userInfo.email%}
+        <form action="/upload_next" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <p style="font-size:16px;">Please upload a zip file which is less then 200M:</p>
+                <input type="button" class="btn btn-outline-light text-dark" value="Browse" id="file_button" onclick="$('#file').click();">
+                <span id="file_span">no file here</span>
+                <input name="file" type="file" class="form-control " id="file" style="display: none" required/>
+            </div>
+            <button type="submit" class="btn btn-primary" id="file_submit" disabled>Upload</button>
+        </form>
+    {% else %}
+        <p><a href="/signin">Please signin to upload.</a></p>
+    {% endif %}
+{% endblock %}
+
+    <!--{% if userInfo.email%}
+    <p>Welcome {{userInfo.name}}!<a href="/upload">点此上传文件</a></p>
+    {% endif %}

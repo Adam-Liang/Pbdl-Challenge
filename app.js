@@ -12,11 +12,11 @@ const app = new Koa();
 
 
 
-app.use(async (ctx, next) => {
-    console.log(`process ${ctx.request.method} ${ctx.request.href}`); // 打印URL
+/*app.use(async (ctx, next) => {
+    //console.log(`process ${ctx.request.method} ${ctx.request.href}`); // 打印URL
     //console.log('1');
     await next(); // 调用下一个middleware
-});
+});*/
 
 const isProduction = process.env.NODE_ENV === 'production';
 if (!isProduction) {
@@ -24,11 +24,17 @@ if (!isProduction) {
     app.use(staticFiles('/static/', __dirname + '/static'));
 }
 
+app.use(async (ctx, next) => {
+    console.log(`process ${ctx.request.method} ${ctx.request.href}`); // 打印URL
+    //console.log('1');
+    await next(); // 调用下一个middleware
+});
+
 app.use(koaBody({
     multipart: true,
     formidable: {
         //uploadDir:path.join(__dirname,'/files/upload/'),
-        maxFileSize: 1000 * 1024 * 1024,
+        maxFileSize: 200 * 1024 * 1024,
         keepExtensions: true,
         //onFileBegin: (name, file) => {
         //    file.path = `${__dirname}/files/upload/${file.name}`;

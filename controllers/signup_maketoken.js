@@ -50,9 +50,11 @@ var fn_signup_maketoken = async (ctx, next) => {
 
         await transporter.sendMail(mail, function (err, info) {
             if (err) {
+                //ctx.body = { success: false, message: "邮箱不存在" };
                 console.log(err);
                 return;
             }
+            //ctx.body = { success: true, message: "发送成功" };
             console.log("发送成功");
             res.send('发送成功');
         })

@@ -1,4 +1,115 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block head %}
+<script type="text/javascript" src="/static/js/md5.js"></script>
+<script type="text/javascript" src="/static/js/jquery.validate.js"></script>
+<script type="text/javascript">
+    function md5_encryption(){
+        document.getElementById("pwd").value = $.md5(
+            document.getElementById("pwd_1").value
+        );
+    }
+</script>
+<script type="text/javascript">
+    function get_token(){
+        var time=11;
+        var email=$("#email").val();
+
+        $.get('/signup/maketoken',{
+            email:email
+        }).done(function(data){
+            console.log(data);
+            if(!data.success){
+                $("#token_span").text("Email is occupied!");
+            }else{
+                $("#token_span").text("Already send");
+                $("#token_span").attr("style","color:blue");
+            }
+        })
+        var stoptime=setInterval(sub(),1000);
+        function sub(){
+            time--;
+            $("#get_token_button").text("Try again after "+time+" second");//attr("innerHTML","请"+time+"秒后再试");
+            if(time===0){
+                clearInterval(stoptime);
+                $("#get_token_button").text("Get token");
+                $("#get_token_button").attr("disabled",false);
+            }else{
+                $("#get_token_button").attr("disabled",true);
+            }
+            return sub;
+        }
+    }
+</script>
+<script type="text/javascript">
+    $().ready(function(){
+        $("#singup_form").validate({
+            rules:{
+                email:{
+                    required:true,
+                    email:true
+                },
+                name:{
+                    required:true
+                },
+                pwd_1:{
+                    required:true,
+                    minlength:6
+                },
+                pwd_2:{
+                    required:true,
+                    minlength:6,
+                    equalTo:"#pwd_1"
+                },
+                token:{
+                    required:true,
+                    digits:true,
+                    rangelength:[6,6]
+                }
+            }
+        });
+    });
+    
+</script>
+{% endblock %}
+{% block content %}
+<h2>Sign UP</h2>
+<form action="/signup_next" method="post" id="singup_form">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input name="email" type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name" type="text" class="form-control" id="name" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+        <label for="pwd_1">Password:</label>
+        <input type="password" class="form-control" id="pwd_1" placeholder="Enter password">
+    </div>
+    <div class="form-group" style="display: none"><!--用以提交md5后密码的隐藏格-->
+        <label for="pwd"></label>
+        <input name="password" type="password" class="form-control" id="pwd">
+    </div>
+    <div class="form-group">
+        <label for="pwd_2">Password Again:</label>
+        <input type="password" class="form-control" id="pwd_2" placeholder="Enter password again">
+    </div>
+    <div class="form-group">
+        <label for="token">Token:<span id="token_span" style="color: red"></span></label>
+        <div class="input-group">
+            <input name="token" type="text" class="form-control" id="token" placeholder="Enter token">
+            <div class="input-group-append">
+                <button class="btn btn-success" type="button" onclick="get_token()" id="get_token_button">Get token</button> 
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="md5_encryption()">SignUp</button>
+</form>
+
+<a href="/signin"><button type="button" class="btn btn-link" style="padding-left: 0;">Already have an account? Click here back to sign in.</button></a>
+{% endblock %}
+<!--<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -48,4 +159,4 @@
             <p><input type="submit" value="注册" onclick="md5_encryption()"></p>
         </form>
     </body>
-</html>
+</html>-->

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block nav_4 %}
+<li class="nav-item"><a class="nav-link active" href="/results">Results</a></li>
+{% endblock %}
+{% block content %}
+<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">Results will update.</b></p>
+<table class="table table-hover" style="color: #212529">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Data of last entry</th>
+            <th>Score_1</th>
+            <th>Score_2</th>
+            <th>Score_3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Adam</td>
+            <td>2019-1-1</td>
+            <td>99.8</td>
+            <td>52.5</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

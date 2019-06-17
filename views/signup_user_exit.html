@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">This email has been used!</b></p>
+<a href="/signup"><button type="button" class="btn btn-link" style="padding-left: 0;">Back to signup.</button></a>
+{% endblock %}
+
+<!--<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -7,4 +14,4 @@
         <p>this email has been used!</p>
         <a href="/">back to index</a>
     </body>
-</html>
+</html>-->
