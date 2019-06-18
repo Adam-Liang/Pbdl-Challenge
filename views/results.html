@@ -8,21 +8,27 @@
 <table class="table table-hover" style="color: #212529">
     <thead>
         <tr>
+            <th>Rank</th>
             <th>User</th>
-            <th>Data of last entry</th>
+            <th>Data of last submit</th>
             <th>Score_1</th>
             <th>Score_2</th>
             <th>Score_3</th>
+            <th>Total Score</th>
         </tr>
     </thead>
     <tbody>
+        {% for user in usersScore %}
         <tr>
-            <td>Adam</td>
-            <td>2019-1-1</td>
-            <td>99.8</td>
-            <td>52.5</td>
-            <td>0</td>
+            <td>{{loop.index}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.last_submit_datetime_format}}</td>
+            <td>{{user.score_1}}</td>
+            <td>{{user.score_2}}</td>
+            <td>{{user.score_3}}</td>
+            <td>{{user.score_total}}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

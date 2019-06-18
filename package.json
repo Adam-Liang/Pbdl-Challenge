@@ -19,6 +19,9 @@
     "mz": "^2.7.0",
     "nunjucks": "^3.2.0",
     "sequelize": "^5.8.7",
-    "nodemailer": "^6.2.1"
+    "nodemailer": "^6.2.1",
+    "moment": "^2.24.0",
+    "archiver": "^3.0.0",
+    "unzip2": "^0.2.5"
   }
 }

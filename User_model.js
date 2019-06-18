@@ -17,9 +17,20 @@ var User = sequelize.define('user', {
         primaryKey: true,
         autoIncrement:true
     },
-    name: Sequelize.STRING(100),
+    name: {
+        type: Sequelize.STRING(100),
+        unique:true
+    },
     password: Sequelize.STRING(32),
-    email: Sequelize.STRING(100)
+    email: {
+        type: Sequelize.STRING(100),
+        unique:true
+    },
+    score_1: Sequelize.FLOAT,
+    score_2: Sequelize.FLOAT,
+    score_3: Sequelize.FLOAT,
+    score_total: Sequelize.FLOAT,
+    last_submit_datetime:Sequelize.DATE
 }, {
         timestamps: false
 });

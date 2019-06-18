@@ -16,9 +16,17 @@ var fn_signup_next = async (ctx, next) => {
         where: {
             email: email
         }
-    })
+    });
+    var user_byname = await User.findOne({
+        where: {
+            name: name
+        }
+    });
+    if (user_byname) {
+        ctx.render('signup_user_name_exit.html');
+    }
     if (user) {
-        ctx.render('signup_user_exit.html');
+        ctx.render('signup_user_email_exit.html');
     } else {//无重复用户时需要确认验证码是否对应
         var user_for_token = await Wait_for_token.findOne({
             where: {

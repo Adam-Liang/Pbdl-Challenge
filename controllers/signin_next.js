@@ -17,7 +17,7 @@ var fn_signin_next = async (ctx, next) => {
         if (user.password === password) {
             ctx.cookies.set(
                 'userEmail',email,{
-                    maxAge: 2*60*60*1000,   // cookie有效时长
+                    maxAge: 14*24*60*60*1000,   // cookie有效时长
                 }
             );
             ctx.render('signin_ok.html', {userInfo:user});
