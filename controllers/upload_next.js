@@ -1,6 +1,8 @@
 const User = require('../User_model');
 const moment = require('moment');
 const fn_file_process = require('./fn_file_process');
+var fs = require("fs");
+var path = require("path");
 
 var fn_upload_next = async (ctx, next) => {
     var email = ctx.cookies.get('userEmail');
@@ -17,8 +19,6 @@ var fn_upload_next = async (ctx, next) => {
         ctx.render('upload_login_erruser.html');
     }
     
-    var fs = require("fs");
-    var path = require("path");
     const file = ctx.request.files.file;
     // 创建可读流
     const reader = fs.createReadStream(file.path);
@@ -31,7 +31,10 @@ var fn_upload_next = async (ctx, next) => {
     user_one.last_submit_datetime = moment().format('YYYY-MM-DD HH:mm:ss');
     await user_one.save();
     //解压并处理文件
-    fn_file_process(user_one);
+    setTimeout(function(){
+        fn_file_process(user_one);//异步调用以便函数内使用同步方法
+    },0);
+    
 
     ctx.render('upload_success.html',{userInfo:user_one});
 }

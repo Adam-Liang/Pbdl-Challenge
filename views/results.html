@@ -11,10 +11,8 @@
             <th>Rank</th>
             <th>User</th>
             <th>Data of last submit</th>
-            <th>Score_1</th>
-            <th>Score_2</th>
-            <th>Score_3</th>
-            <th>Total Score</th>
+            <th>Score</th>
+            <th>Note</th>
         </tr>
     </thead>
     <tbody>
@@ -23,10 +21,16 @@
             <td>{{loop.index}}</td>
             <td>{{user.name}}</td>
             <td>{{user.last_submit_datetime_format}}</td>
-            <td>{{user.score_1}}</td>
-            <td>{{user.score_2}}</td>
-            <td>{{user.score_3}}</td>
             <td>{{user.score_total}}</td>
+            <td>
+                {% if user.state==1 %}
+                New files are processing...
+                {% elif user.state==3 %}
+                Format error!
+                {% elif user.state==4 %}
+                Unexpected error of process
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>

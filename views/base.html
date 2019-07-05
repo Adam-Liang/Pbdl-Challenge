@@ -27,12 +27,6 @@
 		});
 	});
 </script>
-<script type="text/javascript">
-	function logout(){
-		$.get("/logout");
-		window.location.reload();
-	}
-</script>
 {% block head %}
 {% endblock %}
 
@@ -110,7 +104,7 @@
 					<div class="col-lg-2 col-md-4"><!--小导航部分-->
 						{% if userInfo.email%}
 						<div class="signin_button row" id="user_name">
-							<a href="#" onclick="logout()">
+							<a href="/logout">
 								<div class="col-md-12">
 									<img class="img-responsive" src="/static/images/user.png"><span>{{userInfo.name}}</span>
 								</div>

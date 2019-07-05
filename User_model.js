@@ -30,7 +30,8 @@ var User = sequelize.define('user', {
     score_2: Sequelize.FLOAT,
     score_3: Sequelize.FLOAT,
     score_total: Sequelize.FLOAT,
-    last_submit_datetime:Sequelize.DATE
+    last_submit_datetime:Sequelize.DATE,
+    state: Sequelize.INTEGER
 }, {
         timestamps: false
 });
