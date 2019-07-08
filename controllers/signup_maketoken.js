@@ -5,11 +5,11 @@ const nodemailer = require('nodemailer');
 var fn_signup_maketoken = async (ctx, next) => {
     
     const config = {
-        host: 'smtp.qq.com',
-        port: 465,
+        host: 'smtp.office365.com',
+        port: 587,
         auth: {
-            user: '605222023@qq.com',
-            pass: 'yucrqegccudabebg'
+            user: 'pbdl.ws@outlook.com',
+            pass: 'pbdl@iccv'
         }
     }
     const transporter = nodemailer.createTransport(config);
@@ -27,11 +27,11 @@ var fn_signup_maketoken = async (ctx, next) => {
     } else {
         ctx.body = { success: true, message: "账号可用" };
         var mail = {
-            from: '605222023@qq.com',
-            subject: '注册验证码',
+            from: 'pbdl.ws@outlook.com',
+            subject: 'PBDL verification',
             to: email,
-            text: `这是一封来自PBDL的邮件，您的注册验证码是${token}。
-如果这个行为不是由您本人操作的，请忽略这封邮件。`
+            text: `Your PBDL website verification code is ${token}.
+If this is not yours, please ignore this email.`
         };
         var user_for_token = await Wait_for_token.findOne({
             where: {

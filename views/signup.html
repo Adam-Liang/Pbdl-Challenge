@@ -12,7 +12,7 @@
 </script>
 <script type="text/javascript">
     function get_token(){
-        var time=11;
+        var time=361;
         var email=$("#email").val();
 
         $.get('/signup/maketoken',{
@@ -22,7 +22,7 @@
             if(!data.success){
                 $("#token_span").text("Email is occupied!");
             }else{
-                $("#token_span").text("Already send");
+                $("#token_span").text("Already send if your e-mail is correct");
                 $("#token_span").attr("style","color:blue");
             }
         })
