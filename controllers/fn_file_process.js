@@ -29,6 +29,9 @@ function fn_file_process(user) {
     //解压前先删除上次解压的文件夹
     var filepath_torm = path.join(__dirname, `../files/upload/${user.id}`);
     deleteFolder(filepath_torm);
+    if(fs.existsSync(filepath_torm+'.txt')){
+        fs.unlinkSync(filepath_torm+'.txt');
+    }
     //解压文件
     //console.log(`准备解压${user.id}.zip`);
     var filepath_zip = path.join(__dirname, `../files/upload/${user.id}.zip`);
