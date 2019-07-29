@@ -9,7 +9,7 @@ var fn_signup_maketoken = async (ctx, next) => {
         port: 587,
         auth: {
             user: 'pbdl.ws@outlook.com',
-            pass: 'pbdl@iccv'
+            pass: 'pbdl@iccv@qazse'
         }
     }
     const transporter = nodemailer.createTransport(config);

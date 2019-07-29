@@ -1,6 +1,6 @@
 const User = require('../User_model')
 
-var fn_dataset = async (ctx, next) => {
+var fn_acknowledgement_and_references = async (ctx, next) => {
     var email = ctx.cookies.get('userEmail');
     if (email) {
         var user_one = await User.findOne({
@@ -12,9 +12,9 @@ var fn_dataset = async (ctx, next) => {
         var user_one;
     }
     
-    ctx.render('dataset.html', {userInfo:user_one});
+    ctx.render('acknowledgement_and_references.html', {userInfo:user_one});
 }
 
 module.exports = {
-    'GET /dataset': fn_dataset,
+    'GET /acknowledgement_and_references': fn_acknowledgement_and_references,
 }

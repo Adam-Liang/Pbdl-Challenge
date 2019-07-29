@@ -40,11 +40,8 @@
         <form action="/upload_next" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <p style="font-size:16px;">Please upload a zip file which is less then 200M:</p>
-                <p style="font-size:16px; color: red;">（测试阶段）现在你可以在zip中包含三张png图片，要求分辨率1536x2048，8位单通道P模式，名称分别为:</p>
-                <p style="font-size:16px; color: red;">rgb20190528_180044_6684_json.png</p>
-                <p style="font-size:16px; color: red;">rgb20190528_180045_9044_json.png</p>
-                <p style="font-size:16px; color: red;">rgb20190528_180046_109960_json.png</p>
-                <input type="button" class="btn btn-outline-light text-dark" value="Browse" id="file_button" onclick="$('#file').click();">
+                <p style="font-size:16px; color: red;">（测试阶段）现在你可以在zip中包含68张png图片，要求分辨率1773x1379，8位单通道灰度图，以0~9的像素值标记:</p>
+                <input type="button" class="btn btn-outline-secondary text-dark" value="Browse" id="file_button" onclick="$('#file').click();">
                 <span id="file_span">no file here</span>
                 <input name="file" type="file" class="form-control " id="file" style="display: none" required/>
             </div>

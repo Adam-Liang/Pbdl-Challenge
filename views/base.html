@@ -89,7 +89,26 @@
 				</div>	
 			</div>
 		</header>
-
+		<div class="home_content_container">
+				<div class="container">
+				 <div class="row">
+				  <div class="col">
+				   <div class="home_content">
+					<div class="home_date">The 2nd International Workshop on</div>
+					<div class="home_title"><font color="red">P</font>hysics <font color="red">B</font>ased Vision meets <font color="red">D</font>eep <font color="red">L</font>earning (PBDL)</div>
+					
+					<div class="home_location">In Conjunction with ICCV 2019, November 2, Seoul, Korea</div>
+					<div class="home_text">Following the success of 1st ICCV Workshop on Physics Based Vision meets Deep Learning (PBDL2017). We propose the 2nd workshop using the same title and topics with ICCV 2019, and co-organize the Hyperspectral City Challenge.</div>
+					<!-- 
+					<div class="home_buttons">
+					 <div class="button home_button">< a href=" ">Find out more</ a></div>
+					</div>
+					-->
+				   </div>
+				  </div>
+				 </div>
+				</div>
+			   </div>
 		
 	</div>
 
@@ -122,20 +141,23 @@
 						
 						{% block nav %}
 						<ul class="nav nav-pills flex-column new_challenge">
-							{% block nav_1 %}<li class="nav-item"><a class="nav-link" href="/">Message</a></li>{% endblock %}
-							{% block nav_2 %}<li class="nav-item"><a class="nav-link" href="/dataset">Dataset</a></li>{% endblock %}
-							{% block nav_3 %}<li class="nav-item"><a class="nav-link" href="/tasks">Tasks</a></li>{% endblock %}
-							{% block nav_4 %}<li class="nav-item"><a class="nav-link" href="/results">Results</a></li>{% endblock %}
-							{% block nav_5 %}<li class="nav-item"><a class="nav-link" href="/evaluation">Evaluation</a></li>{% endblock %}
+							{% block nav_0 %}<li class="nav-item"><a class="nav-link" href="/important_dates">Important Dates</a></li>{% endblock %}
+							{% block nav_1 %}<li class="nav-item"><a class="nav-link" href="/">Background and Motivation</a></li>{% endblock %}
+							{% block nav_2 %}<li class="nav-item"><a class="nav-link" href="/dataset_generation">Dataset Generation</a></li>{% endblock %}
+							{% block nav_3 %}<li class="nav-item"><a class="nav-link" href="/download">Dataset Download</a></li>{% endblock %}
+							{% block nav_4 %}<li class="nav-item"><a class="nav-link" href="/evaluation">Evaluation</a></li>{% endblock %}
+							<!--{% block nav_5 %}<li class="nav-item"><a class="nav-link" href="/results">Results</a></li>{% endblock %}-->
+							{% block nav_6 %}<li class="nav-item"><a class="nav-link" href="/acknowledgement_and_references"><!--Acknowledgement and -->References</a></li>{% endblock %}
 						</ul>
 						{% endblock %}
 					</div>
 					<div class="col-lg-10 col-md-8"><!--内容部分-->
 						{% block content %}
-						<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">Dataset will update.</b></p>
+						<!--<p style="font-size:16px;"><b style="font-family:arial;color:black;font-size:16px;">Dataset will update.</b></p>
 						<p style="font-size:16px;">We propose a semantic segmentation challenge for urban autonomous driving scene which utilizes newly developed hyperspectral camera as well as solid laser camera. The motivation is to compensate the insufficient visual quality problem of existing dataset. Particularly, the CitiScape dataset provides only extremely washed out RGB images, and the multi-view stereo depth is inaccurate because of small baseline. To solve this, we endeavour to propose the new dataset which adopts multi-channel visual input.</p>
 						<p style="font-size:16px;">Our new dataset, can provide the following benefits: 1. properly balanced and colourful visual input. 2. We can analyse and see visual properties which cannot be seen from RGB channels. 3. We can robustly handle night scenes, thanks to the infrared band. 4. We can robustly handle water phenomenon including rain and fog, because of the absolution behaviour in the infrared band. 5. We provide much denser and reliable 3D points.</p>
 						<p style="font-size:16px;">For the initial release of the dataset, we decide to propose the task of semantic segmentation. We are planning to release 20000-50000 frames hyperspectral plus laser depth images. We are planning to manually label 2000-5000 frames.</p>
+						-->
 						{% endblock %}
 					</div>
 				</div>
